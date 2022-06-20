@@ -1,5 +1,3 @@
-
-from unicodedata import category
 from rest_framework import serializers
 from apps.categories.models import Category
 # from apps.posts.serializers import PostSerializer 
