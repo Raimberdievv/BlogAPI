@@ -1,4 +1,3 @@
-from django.shortcuts import render
 from rest_framework import generics
 from apps.posts.models import Post
 from apps.posts.serializers import PostSerializer,PostCreateSerializer,PostUpdateSerializer
