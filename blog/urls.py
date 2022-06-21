@@ -14,9 +14,18 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path
+from django.conf import settings
+from django.conf.urls.static import static
+from django.urls import path,include
+from apps.posts.views import PostAPIView,PostCreateAPIView,PostDeleteAPIView,PostUpdateAPIView
 
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('api-auth/',include('rest_framework.urls')),
+    path('api/post',PostAPIView.as_view(),name = "post_api"),
+    path('api/post/create',PostCreateAPIView.as_view(),name = "post_create_api"),
+    path('api/post/update/<int:pk>',PostUpdateAPIView.as_view(),name = "post_api_update"),
+    path('api/post/delete/<int:pk>',PostDeleteAPIView.as_view(),name = "post_api_delete"),
 ]
+urlpatterns+=static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
