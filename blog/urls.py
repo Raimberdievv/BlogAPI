@@ -19,10 +19,17 @@ from django.conf.urls.static import static
 from django.urls import path,include
 from apps.posts.views import PostAPIView,PostCreateAPIView,PostDeleteAPIView,PostUpdateAPIView
 
+api_urlpatterns = [
+    path('', include('apps.posts.urls')),
+    path('', include('apps.users.urls')),
+    path('', include('apps.categories.urls')),
+]
+
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('api-auth/',include('rest_framework.urls')),
+    # path('api/', include(api_urlpatterns)),
     path('api/post',PostAPIView.as_view(),name = "post_api"),
     path('api/post/create',PostCreateAPIView.as_view(),name = "post_create_api"),
     path('api/post/update/<int:pk>',PostUpdateAPIView.as_view(),name = "post_api_update"),
